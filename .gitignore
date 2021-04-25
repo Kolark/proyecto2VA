@@ -1,0 +1,5 @@
+pose/
+pose/coco/pose_deploy_linevec.prototxt
+pose/coco/pose_iter_440000.caffemodel
+pose/mpi/pose_deploy_linevec.prototxt
+pose/mpi/pose_deploy_linevec_faster_4_stages.prototxt
