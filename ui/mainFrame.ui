@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1231</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <widget class="QLabel" name="imgWidget">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>10</x>
       <y>90</y>
       <width>600</width>
       <height>400</height>
@@ -25,6 +25,35 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(10, 255, 124);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="img_">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>90</y>
+      <width>600</width>
+      <height>400</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(10, 255, 124);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="magnitud">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>550</y>
+      <width>55</width>
+      <height>20</height>
+     </rect>
     </property>
     <property name="text">
      <string>TextLabel</string>
