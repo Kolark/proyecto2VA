@@ -11,6 +11,7 @@ import numpy as np
 import smoothPrediction
 import DenseOpticalFlow
 
+import keyboard
 
 #---------------------
 prediction = smoothPrediction.Prediction(5)
@@ -43,6 +44,11 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fotograma = cv2.flip(fotograma,1)
 
         DOpticalFlow.UpdateFrame(fotograma)
+        
+        if(DOpticalFlow.mValue > 0.75):
+            keyboard.press('right')
+        else:
+            keyboard.release('right')
 
         h, w, channel = fotograma.shape    
 
