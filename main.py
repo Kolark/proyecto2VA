@@ -37,7 +37,8 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-
+        self.pixmap = QPixmap('imgreference.PNG')
+        self.imgref.setPixmap(self.pixmap)
         self.pose_estimation = PoseEstimation()
 
         self.timer = QTimer()
@@ -68,13 +69,13 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         if is_pose:
             keyboard.press('left')
+            keyboard.release('right')
         else:
             keyboard.release('left')
 
-            if DOpticalFlow.mValue > 0.75:
+            if DOpticalFlow.mValue > 1.25:
                 keyboard.press('right')
-            else:
-                keyboard.release('right')
+                
 
         # self.magnitud.setText(str(DOpticalFlow.mValue))
         self.magnitud.setText("Is in pose" if is_pose else "Not in pose")
