@@ -37,7 +37,13 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timer = QTimer()
         self.timer.timeout.connect(self.viewCam)
         self.controlTimer()
+<<<<<<< Updated upstream
     
+=======
+
+        self.is_pose = False
+
+>>>>>>> Stashed changes
     def viewCam(self):
     # read imageS in BGR format
         disponible, fotograma = captura.read()
@@ -59,6 +65,7 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # convert image to RGB format
         fotogramaRGB = cv2.cvtColor(fotograma, cv2.COLOR_BGR2RGB)
+<<<<<<< Updated upstream
         self.SetImages(fotogramaRGB,self.imgWidget)
         self.SetImages(bgr,self.img_)
 
@@ -66,6 +73,27 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def SetImages(self,IMG,label):
         h, w, channel = IMG.shape        
+=======
+        self.SetImages(fotogramaRGB, self.imgWidget)
+        self.SetImages(bgr, self.img_)
+
+        if DOpticalFlow.mValue > 1.25:
+            keyboard.press('right')
+            keyboard.release('left')
+        else:
+            self.is_pose = self.pose_estimation.is_in_pose(fotogramaRGB)
+
+            if self.is_pose:
+                keyboard.press('left')
+            else:
+                keyboard.release('left')
+
+        # self.magnitud.setText(str(DOpticalFlow.mValue))
+        self.magnitud.setText("Is in pose" if self.is_pose else "Not in pose")
+
+    def SetImages(self, IMG, label):
+        h, w, channel = IMG.shape
+>>>>>>> Stashed changes
         step = channel * w
         qImg = QImage(IMG.data, w, h, step, QImage.Format_RGB888)
         label.setPixmap(QPixmap.fromImage(qImg))
