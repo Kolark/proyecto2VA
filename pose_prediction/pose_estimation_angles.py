@@ -86,9 +86,12 @@ class PoseEstimation:
         self.head_angle = self.pdv_head.update(self.head_angle)
 
         # Calcula si está en la pose de brazos cruzados
-        is_pose = (135 < self.l_arm_angle < 175 and
+        is_pose = (len(points) == 8 and
+                   135 < self.l_arm_angle < 175 and
                    -40 > self.l_farm_angle > -90 and
                    -135 > self.r_arm_angle > -175 and
-                   40 < self.r_farm_angle < 90 )
+                   40 < self.r_farm_angle < 90 and
+                   points[4][0] < points[7][0] and
+                   points[7][0] - points[4][0] < (points[5][0]-points[2][0])/2)
 
         return is_pose

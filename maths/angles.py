@@ -10,7 +10,7 @@ class AnglesFromRig:
         Método para calcular y retornar los ángulos del rig respecto a la vertical
         """
         if len(rig) != 8:
-            return np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])
+            return (0, 0, 0, 0, 0)
 
         head = np.array(rig[1]) - np.array(rig[0])
         lArm = np.array(rig[2]) - np.array(rig[3])

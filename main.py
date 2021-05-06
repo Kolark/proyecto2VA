@@ -44,6 +44,7 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timer = QTimer()
         self.timer.timeout.connect(self.viewCam)
         self.controlTimer()
+        self.is_pose = False
 
     def viewCam(self):
         # read imageS in BGR format
@@ -65,20 +66,20 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.SetImages(fotogramaRGB, self.imgWidget)
         self.SetImages(bgr, self.img_)
 
-        is_pose = self.pose_estimation.is_in_pose(fotogramaRGB)
-
-        if is_pose:
-            keyboard.press('left')
-            keyboard.release('right')
-        else:
+        if DOpticalFlow.mValue > 1.25:
+            keyboard.press('right')
             keyboard.release('left')
+        else:
+            self.is_pose = self.pose_estimation.is_in_pose(fotogramaRGB)
 
-            if DOpticalFlow.mValue > 1.25:
-                keyboard.press('right')
-                
+            if self.is_pose:
+                keyboard.press('left')
+                keyboard.release('right')
+            else:
+                keyboard.release('left')
 
         # self.magnitud.setText(str(DOpticalFlow.mValue))
-        self.magnitud.setText("Is in pose" if is_pose else "Not in pose")
+        self.magnitud.setText("Is in pose" if self.is_pose else "Not in pose")
 
     def SetImages(self, IMG, label):
         h, w, channel = IMG.shape
