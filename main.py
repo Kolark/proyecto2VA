@@ -68,7 +68,7 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.SetImages(fotogramaRGB, self.imgWidget)
         self.SetImages(bgr, self.img_)
         print(DOpticalFlow.mValue)
-        if DOpticalFlow.mValue > 1.25:
+        if DOpticalFlow.mValue > 0.45:
             keyboard.press('right')
             keyboard.release('left')
         else:
