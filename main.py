@@ -38,7 +38,9 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
         self.pixmap = QPixmap('imgreference.PNG')
+        
         self.imgref.setPixmap(self.pixmap)
+        
         self.pose_estimation = PoseEstimation()
 
         self.timer = QTimer()
@@ -65,7 +67,7 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fotogramaRGB = cv2.cvtColor(fotograma, cv2.COLOR_BGR2RGB)
         self.SetImages(fotogramaRGB, self.imgWidget)
         self.SetImages(bgr, self.img_)
-
+        print(DOpticalFlow.mValue)
         if DOpticalFlow.mValue > 1.25:
             keyboard.press('right')
             keyboard.release('left')
@@ -77,6 +79,7 @@ class UIWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 keyboard.release('right')
             else:
                 keyboard.release('left')
+                keyboard.release('right')
 
         # self.magnitud.setText(str(DOpticalFlow.mValue))
         self.magnitud.setText("Is in pose" if self.is_pose else "Not in pose")
